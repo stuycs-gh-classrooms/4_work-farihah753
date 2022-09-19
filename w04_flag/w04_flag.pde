@@ -1,4 +1,10 @@
 size(400,400);
+for(int x = 0; x < 400; x = x + 1){
+  for(int y = 0; y < 400; y = y +1) {
+    stroke(0,0,255*(400-y)/400);
+    rect(x,y,1,1);
+  }
+}
 scale(1.5);
 translate(60,-25);
 circle(75,75,75);
