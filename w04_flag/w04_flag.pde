@@ -5,6 +5,32 @@ for(int x = 0; x < 400; x = x + 1){
     rect(x,y,1,1);
   }
 }
+
+rect(50,50,50,50);
+line(50,50,100,100);
+line(100,50,50,100);
+rect(300,300,50,50);
+line(300,300,350,350);
+line(350,300,300,350);
+rect(300,50,50,50);
+line(300,50,350,100);
+line(350,50,50,350);
+rect(50,300,50,50);
+line(50,300,100,350);
+line(100,300,50,350);
+int x_circle =75;
+int y_circle = 125;
+for(int circle_count = 0; circle_count < 4; circle_count = circle_count + 1) {
+  fill(83,187,67);
+  ellipse(x_circle,y_circle, 50,50);
+  y_circle = y_circle + 50;
+}
+x_circle = 325;
+y_circle = 125;
+for(int circle_count1= 0; circle_count1< 4; circle_count1= circle_count1+ 1) {
+  ellipse(x_circle,y_circle, 50,50);
+  y_circle = y_circle + 50;
+}
 scale(1.5);
 translate(60,-25);
 circle(75,75,75);
