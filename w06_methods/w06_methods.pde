@@ -30,7 +30,10 @@ void book(int bottomRightx, int bottomRighty){
 
 }
 void setup(){
-  size(200,200);
+  size(100,100);
   twwLogo(width/2, (height)/4);
+  twwLogo(25, 10);
+  twwLogo(75, 10);
+  twwLogo(25, 75);
   book(width/2 - width/8, (height/2)+ width/16);
 }
