@@ -22,11 +22,18 @@ void draw() {
   //background(0);
   //sin curve
   drawSinCurve(angle, sinAmplitude, sinAmplitude);
-  angle++;
   //circle
   drawCircle(angle, circRadius, width/2, sinAmplitude*2 + circRadius);
   //concentric circles
   drawCircle(angle, spiralRadius, width/2, sinAmplitude*2 + circRadius*3);
+  if ( radians(angle) % (2 * PI) == 0){
+    if (radians(angle) == 0){
+      spiralRadius = spiralRadius;
+    }
+    else {
+      spiralRadius-=10;
+    }
+  }
 
   angle++;
 }//draw
@@ -48,5 +55,8 @@ void drawSinCurve(int degrees, int amplitude, int yOffset) {
   //println("X: " + degrees + " CX: " + degreesCX);
 }
 void drawCircle(int degrees, int radius, int xOffset, int yOffset) {
-  circle(
+  float degreesX = radius * cos(radians(degrees)) + xOffset;
+  float degreesY = radius * sin(radians(degrees)) + yOffset;
+  circle(degreesX, degreesY, dotDiameter);
+  println("angle: "+ degrees + " degreesX: " + degreesX + " degreesY: " + degreesY); 
 }
