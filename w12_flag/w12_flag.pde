@@ -8,7 +8,7 @@ void setup(){
  b = 4; 
  angle = 0.0;
  frameRate(10);
- line(width/2,height/3,width/2,height);
+ //line(width/2,height/3,width/2,height);
 
 }
 
