@@ -1,4 +1,4 @@
-//Farihah, Eric, Farihah
+//Farihah, Eric, Rifah
 int a, b,shift;
 float angle;
 void setup(){
