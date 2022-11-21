@@ -24,7 +24,7 @@ void draw() {
 }//draw
 
 void keyPressed() {
-  if (key == ' ') {
+  if (key == 'r') {
     for (int i = 0; i < balls.length; i ++) {
       balls[i].reset();
     }
