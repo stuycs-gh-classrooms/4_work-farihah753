@@ -14,17 +14,17 @@ void setup() {
 
 void draw() {
   background(0);
-  for (int i=0; i<balls.length-1; i++) {
-    fill(SAFE_COLOR);
-    if(balls[i].collisionCheck(balls[i]) == true){
-      fill(COLLISION_COLOR);
-    }
-    else{
-      fill(SAFE_COLOR);
+  for (int i=0; i<balls.length; i++) {
+    for (int n = 0; n <balls.length; n++) {
+      if (balls[i].collisionCheck(balls[n]) == true) {   
+        fill(COLLISION_COLOR);
+      } 
+      else {
+        fill(SAFE_COLOR);
+      }
     }
     balls[i].display();
     balls[i].move();
-    
   }
 }//draw
 
@@ -53,8 +53,7 @@ void keyPressed() {
   }//reset'
   else if (key == 'w') {
     changeAllSpeeds();
-  }
-  else if (key == CODED) {
+  } else if (key == CODED) {
     int xchange = 0;
     int ychange = 0;
     if (keyCode == UP) {

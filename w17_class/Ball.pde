@@ -29,6 +29,15 @@ class Ball {
     c = newc;
   }
 
+  boolean collisionCheck(Ball other) {
+    if (other != this){
+      if (dist(other.cx, other.cy, this.cx, this.cy)==(this.radius + other.radius)) {
+        return true;
+      }
+      return false;
+    }
+        return false;
+  }
 
   void move() {
     if (cx <= radius || cx >= (width - 1 - radius)) {
@@ -51,17 +60,8 @@ class Ball {
     return d <= radius;
   }//onBall
 
-  boolean collisionCheck(Ball other) {
-    if (this != other) {
-      if (onBall(other.cx, other.cy) == true) {
-        return true;
-      }
-    }
-    return false;
-  }
   int getScoreValue() {
     int score = abs(xvelocity) + abs(yvelocity);
     return score;
   }//getScoreValue
 }//Ball
-
