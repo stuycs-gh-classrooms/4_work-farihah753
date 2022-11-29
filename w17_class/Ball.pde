@@ -1,4 +1,3 @@
-
 class Ball {
 
   int cx, cy;
