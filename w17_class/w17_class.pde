@@ -16,11 +16,14 @@ void draw() {
   background(0);
   for (int i=0; i<balls.length; i++) {
     for (int n = 0; n <balls.length; n++) {
-      if (balls[i].collisionCheck(balls[n]) == true) {   
-        fill(COLLISION_COLOR);
+      if (balls[i].collisionCheck(balls[n])) {   
+        //fill(COLLISION_COLOR);
+        balls[i].c = COLLISION_COLOR;
+        balls[n].c = COLLISION_COLOR;
       } 
       else {
-        fill(SAFE_COLOR);
+        balls[i].c = SAFE_COLOR;
+        balls[n].c = SAFE_COLOR;
       }
     }
     balls[i].display();
