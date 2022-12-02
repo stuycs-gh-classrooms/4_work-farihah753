@@ -1,4 +1,3 @@
-//State variable constants
 int DIRT = 0;
 int FIRE = 1;
 int BURNT = 2;
