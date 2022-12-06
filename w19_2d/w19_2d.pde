@@ -14,26 +14,32 @@ color GRASS_COLOR = #49B90D;
 boolean burning = false;
 int grassDensity = 75;
 int tractLength = 20;
-Land tract[];
+int tractCounter = 10;
+Land tracts[][];
 
 
 void setup() {
-  size(700, 300);
+  size(700, 350);
   frameRate(5);
-  tract = new Land[tractLength];
-  setupLand(tract, tractLength, grassDensity);
-  showLand(tract);
+  tracts = new Land[tractCounter][tractLength];
+  for (int r = 0; r < tractCounter; r++){
+    setupLand(tracts[r], tractLength, grassDensity, r);
+    showLand(tracts[r]);
+  }
 }//setup
 
 void draw() {
-  showLand(tract);
+  for (int r = 0; r < tractCounter; r++){
+  showLand(tracts[r]);
   if (burning) {
-    liveFire(tract);
+    liveFire(tracts[r]);
+  
   }//burning
+  }
 }//draw
 
 
-void setupLand(Land[] row, int numPlots, float density) {
+void setupLand(Land[] row, int numPlots, float density, int r) {
   //figure out size of each plot of land
   int plotSize = width / numPlots;
 
@@ -52,7 +58,7 @@ void setupLand(Land[] row, int numPlots, float density) {
     }//grass land
 
     //creates a new land at (x, y) with size plotSize and type
-    row[i] = new Land(i*plotSize, height/2-plotSize/2, plotSize, type);
+    row[i] = new Land(i*plotSize, r * plotSize, plotSize, type);
   }//setup loop
 }//setupLand
 
@@ -87,6 +93,8 @@ void keyPressed() {
   }//start burning
   else if (key == 'r') {
     burning = false;
-    setupLand(tract, tractLength, grassDensity);
+    for(int r = 0; r < tractCounter; r++){
+    setupLand(tracts[r], tractLength, grassDensity, r);
+    }
   }
 }
