@@ -12,7 +12,7 @@ color GRASS_COLOR = #49B90D;
 
 //Driver variables
 boolean burning = false;
-float grassDensity = 75;
+int grassDensity = 75;
 int numTracts = 10;
 int tractLength = 20;
 Land[][] grid;
@@ -22,16 +22,17 @@ void setup() {
   size(700, 350);
   frameRate(5);
   grid = new Land[numTracts][tractLength];
-  setupLand(grid, numTracts, tractLength, grassDensity);
+  
+    setupLand(grid, numTracts, tractLength, grassDensity);
+  
 
-  showLand(grid);
+    showLand(grid);
+
 }//setup
 
 void draw() {
-  showLand(grid);
-
+    showLand(grid);
   if (burning) {
-    
       liveFire(grid);
     
   }//burning
@@ -43,24 +44,25 @@ void setupLand(Land[][] field, int numRows, int numPlots, float density) {
   int plotSize = width / numPlots;
 
   //instantiate each Land object
-  for (int r=0; r < field.length; r++) {
-    for (int c=0; c<field[r].length; c++) {
-      int type = DIRT;
+  for (int r=0; r< field.length; r++) {
+    for(int i = 0; i < field[r].length; i++){
+    int type = DIRT;
 
-      //first Land object should be FIRE
-      if (c == 0) {
-        type = FIRE;
-      }//start with fire
+    //first Land object should be FIRE
+    if (i == 0) {
+      type = FIRE;
+    }//start with fire
 
-      //Chance for grass is based on density
-      else if (random(100) < density) {
-        type = GRASS;
-      }//grass land
+    //Chance for grass is based on density
+    else if (random(100) < density) {
+      type = GRASS;
+    }//grass land
 
-      //creates a new land at (x, y) with size plotSize and type
-      field[r][c] = new Land(c*plotSize, numRows*plotSize, plotSize, type);
-    }//setup loop
-  }
+    //creates a new land at (x, y) with size plotSize and type
+    field[r][i] = new Land(i*plotSize, numRows*plotSize, plotSize, type);
+    }
+  }//setup loop
+  
 }//setupLand
 
 void showLand(Land[][] field) {
@@ -75,18 +77,16 @@ void showLand(Land[][] field) {
 void liveFire(Land[][] field) {
   //First, check Land objects to the left, apply state change rules.
   //Assume nothing useful to the left of row[0]
-  for (int r = 0; r < field.length; r++) {
-    for (int i = 0; i < field[i].length; i++) {
-      field[r][0].updateNextState(0);
-    }
-    for (int i=1; i<field[r].length; i++) {
-      field[r][i].updateNextState(field[r][i-1].state);
-    }//set nextStates for all plots
+  for (int r = 0; r < field.length; r++){
+  field[r][0].updateNextState(0);
+  for (int i=1; i< field[r].length; i++) {
+    field[r][i].updateNextState(field[r][i-1].state);
+  }//set nextStates for all plots
 
-    //Based on potential state changes from updateNextState
-    for (int i=0; i<field[r].length; i++) {
-      field[r][i].changeState();
-    }//change states
+  //Based on potential state changes from updateNextState
+  for (int i=0; i<field[r].length; i++) {
+    field[r][i].changeState();
+  }//change states
   }
 }//liveFire
 
@@ -100,8 +100,8 @@ void keyPressed() {
   }//start burning
   else if (key == 'r') {
     burning = false;
-    for (int r=0; r < grid.length; r++) {
+    
       setupLand(grid, numTracts, tractLength, grassDensity);
-    }
+    
   }
 }
