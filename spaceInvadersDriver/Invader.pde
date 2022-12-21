@@ -3,13 +3,13 @@ class Invader {
   int xOffset;
   int direction;
 
-  Invader(int cx, int cy, int w, int h) {
+  Invader(int cx, int cy, int w, int h, int offset) {
     x = cx;
     y = cy;
     iWidth = w;
     iHeight = h;
     direction = 0;
-    xOffset = Invader_xOffset;
+    xOffset = offset;
   }
 
   void display() {
@@ -19,7 +19,7 @@ class Invader {
   void move(int leftLimit) {
     if (direction == 0) {
       x++;
-      if (x >= leftLimit -iWidth - xOffset) {
+      if (x >= leftLimit -iWidth/2 - xOffset) {
         direction = 1;
       }
     } else if (direction == 1) {
@@ -35,5 +35,12 @@ class Invader {
       y += iHeight;
       direction = 0;
     }
+  }
+  
+  boolean invaderBottom(int bottomLimit){
+    if ( y >= bottomLimit - iWidth/2){
+      return true;
+    }
+    return false;
   }
 }

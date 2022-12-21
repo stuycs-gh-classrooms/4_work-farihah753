@@ -1,3 +1,4 @@
+
 class Ship {
   int x, y, sWidth, sHeight;
   int speed;

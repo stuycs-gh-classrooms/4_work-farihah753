@@ -4,10 +4,17 @@ int Ship_yOffset;
 int SPEED;
 Ship ship;
 
-//invader
-int INVADER_WIDTH, INVADER_HEIGHT;
-int Invader_yOffset, Invader_xOffset;
-Invader invader;
+
+
+//invaderGrid
+int Irow;
+int Icol;
+InvaderArray i;
+
+
+////invaderBullet
+//int invBulletY, invBulletX, invBulletDiameter;
+//InvaderBullet invaderBullet;
 
 void setup(){
   size(700,350);
@@ -20,26 +27,40 @@ void setup(){
   ship.display();
   //ship
   
-  //invader 
-  INVADER_WIDTH = 50;
-  INVADER_HEIGHT = 25;
-  Invader_yOffset = 50;
-  Invader_xOffset = 20;
-  invader = new Invader(Invader_xOffset,Invader_yOffset,INVADER_WIDTH,INVADER_HEIGHT);
+
   
+  Irow = 3;
+  Icol = 5;
+  i = new InvaderArray(Irow, Icol);
+  i.setupGrid();
+  i.showGrid();
   
+  ////invaderBulletY & diameter
+  //invBulletDiameter = 20;
   
 }
 
 void draw(){
   background(0);
   ship.display();
-  invader.display();
-  invader.move(width);
-  println(invader.direction);
+  i.showGrid();
+  i.moveGrid(width);
+  
+  //  Had to put invBulletX in draw because the X value for the bullet always changes with the Ship.
+  // It's always different so the starting position of the bullet must be changed everytime.
+  
+  
+  //invBulletX = Ship.x;
+  //invaderBullet = new InvaderBullet(invBulletX, invBulletY, invBulletDiameter);
+  //invBulletY = height-Ship_yOffset;
+  //invaderBullet.display();
+  
 }
 
+
+
 void keyPressed(){
+  //Keys for moving
   if (key == 'd'){
     if ( ship.x <= width - SHIP_WIDTH/2){
       ship.moveRight();
@@ -49,5 +70,11 @@ void keyPressed(){
     if ( ship.x >= SHIP_WIDTH/2){
       ship.moveLeft();
     }
+  }
+  //Key for firing
+  if (key == ' '){
+    //boolean firing = true;
+    //invaderBullet.moveBulletUp();
+    
   }
 }
