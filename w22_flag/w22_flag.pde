@@ -2,7 +2,6 @@
 //Avneil
 //Jasper
 
-eil
 float angle;
 int L;
 int n;
